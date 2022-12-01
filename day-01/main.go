@@ -5,29 +5,16 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 	"strconv"
 )
 
-func max(s []int) (offset, max int) {
-	for i, n := range s {
-		if max < n {
-			max = n
-			offset = i
-		}
+func sum(s []int) (sum int) {
+	for _, n := range s {
+		sum += n
 	}
 
-	return offset, max
-}
-
-func topThree(s []int) (one, two, three int) {
-	var offset int
-
-	offset, one = max(s)
-	s = append(s[:offset], s[offset+1:]...)
-	offset, two = max(s)
-	s = append(s[:offset], s[offset+1:]...)
-	offset, three = max(s)
-	return one, two, three
+	return sum
 }
 
 func main() {
@@ -56,8 +43,7 @@ func main() {
 		elves[current] += int(calories)
 	}
 
-	_, max := max(elves)
-	fmt.Printf("Max of calories: %d\n", max)
-	one, two, three := topThree(elves)
-	fmt.Printf("Sum of top three: %d\n", one+two+three)
+	sort.Ints(elves)
+	fmt.Printf("Max of calories: %d\n", elves[len(elves)-1])
+	fmt.Printf("Sum of top three: %d\n", sum(elves[len(elves)-3:]))
 }
