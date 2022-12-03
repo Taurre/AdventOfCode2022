@@ -113,7 +113,6 @@ func main() {
 		first := content[:(len(content) / 2)]
 		second := content[(len(content) / 2):]
 		common := findCommon([]string{first, second})
-		fmt.Println(string(common))
 		sum.part1 += priority[string(common)]
 		group = append(group, content)
 
