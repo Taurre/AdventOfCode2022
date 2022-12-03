@@ -12,7 +12,7 @@ type sum struct {
 }
 
 var (
-	priority = map[string]int {
+	priority = map[string]int{
 		"a": 1,
 		"b": 2,
 		"c": 3,
@@ -80,7 +80,7 @@ func findCommon(group []string) rune {
 
 		common |= 1 << offset
 		offset++
-	}	
+	}
 
 	for item, value := range count {
 		if value == common {
@@ -110,8 +110,8 @@ func main() {
 
 	for scanner.Scan() {
 		content := scanner.Text()
-		first := content[:(len(content)/2)]
-		second := content[(len(content)/2):]
+		first := content[:(len(content) / 2)]
+		second := content[(len(content) / 2):]
 		common := findCommon([]string{first, second})
 		fmt.Println(string(common))
 		sum.part1 += priority[string(common)]
