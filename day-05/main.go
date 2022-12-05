@@ -19,7 +19,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	
 	input, err := os.Open(flag.Args()[0])
 
 	if err != nil {
@@ -75,7 +74,7 @@ func main() {
 			crates[from-1] = crates[from-1][:last-count]
 		} else {
 			for i := 0; i < count; i++ {
-				last := len(crates[from-1])-1
+				last := len(crates[from-1]) - 1
 				crates[to-1] = append(crates[to-1], crates[from-1][last])
 				crates[from-1] = crates[from-1][:last]
 			}
