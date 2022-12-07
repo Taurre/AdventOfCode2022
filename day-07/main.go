@@ -16,7 +16,7 @@ type node struct {
 }
 
 var (
-	filesystemSize = 70000000
+	filesystemSize    = 70000000
 	updateNeededSpace = 30000000
 )
 
@@ -65,7 +65,7 @@ func freeCandidates(node *node, free int) []int {
 		return candidates
 	}
 
-	if free + node.size >= updateNeededSpace {
+	if free+node.size >= updateNeededSpace {
 		candidates = append(candidates, node.size)
 	}
 
@@ -133,7 +133,7 @@ func main() {
 
 	setNodeSize(root)
 	fmt.Printf("Sum of at most 100000: %d\n", sumAtMost(root))
-	candidates := freeCandidates(root, filesystemSize - root.size)
+	candidates := freeCandidates(root, filesystemSize-root.size)
 	sort.Ints(candidates)
 	fmt.Printf("Smallest candidates to free: %d\n", candidates[0])
 }
