@@ -55,7 +55,7 @@ func scenicScore(grid [][]int, y, x int) int {
 	score := make([]int, 4)
 
 	for top := y - 1; top >= 0; top-- {
-		score[0]++	
+		score[0]++
 
 		if grid[top][x] >= grid[y][x] {
 			break
@@ -89,7 +89,6 @@ func scenicScore(grid [][]int, y, x int) int {
 	return score[0] * score[1] * score[2] * score[3]
 }
 
-
 func main() {
 	log.SetFlags(0)
 
@@ -109,12 +108,12 @@ func main() {
 
 	for i := 0; scanner.Scan(); i++ {
 		text := scanner.Text()
-		line := make([]int, 0)		
+		line := make([]int, 0)
 
 		for _, c := range text {
-			line = append(line, int(c - '0'))
+			line = append(line, int(c-'0'))
 		}
-		
+
 		grid = append(grid, line)
 	}
 
@@ -124,7 +123,6 @@ func main() {
 
 	count := 0
 	highestScore := 0
-	
 
 	for i := 0; i < len(grid); i++ {
 		for j := 0; j < len(grid[i]); j++ {
