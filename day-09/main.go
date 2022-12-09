@@ -79,11 +79,10 @@ func simulate(last int, motions []string) int {
 							tail.x--
 						}
 					}
-
 				}
-
-				visited[fmt.Sprintf("%d;%d", knots[last-1].x, knots[last-1].y)] = true
 			}
+
+			visited[fmt.Sprintf("%d;%d", knots[last-1].x, knots[last-1].y)] = true
 		}
 	}
 
