@@ -14,9 +14,9 @@ type knot struct {
 func isAdjacent(head, tail *knot) bool {
 	for _, x := range []int{-1, 0, 1} {
 		for _, y := range []int{-1, 0, 1} {
-			if tail.x + x == head.x && tail.y + y == head.y {
+			if tail.x+x == head.x && tail.y+y == head.y {
 				return true
-			}			
+			}
 		}
 	}
 
@@ -47,7 +47,7 @@ func simulate(last int, motions []string) int {
 				knots[0].y++
 			case 'D':
 				knots[0].y--
-			
+
 			}
 
 			for i := 0; i < last-1; i++ {
