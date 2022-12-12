@@ -45,11 +45,7 @@ func shortest(hm heightmap, from, to coord) int {
 	heightmap[from.x][from.y].visited = true
 	nodes := append([]coord(nil), from)
 
-	for !heightmap[to.x][to.y].visited {
-		if len(nodes) == 0 {
-			break
-		}
-
+	for !heightmap[to.x][to.y].visited && len(nodes) > 0 {
 		next := make([]coord, 0)
 
 		for _, node := range nodes {
@@ -104,19 +100,21 @@ func main() {
 		text := scanner.Text()
 
 		for _, letter := range text {
-			heightmap[i] = append(heightmap[i], square{letter: letter, elevation: int(letter - 'a'), distance: math.MaxInt32, visited: false})
-			last := len(heightmap[i]) - 1
+			elevation := int(letter - 'a')
 
 			switch letter {
 			case 'S':
-				heightmap[i][last].elevation = 'a' - 'a'
+				elevation = 'a' - 'a'
 				start.x = i
-				start.y = last
+				start.y = len(heightmap[i])
 			case 'E':
-				heightmap[i][last].elevation = 'z' - 'a'
+				elevation = 'z' - 'a'
 				end.x = i
-				end.y = last
+				end.y = len(heightmap[i])
 			}
+
+			square := square{letter: letter, elevation: elevation, distance: math.MaxInt32, visited: false}
+			heightmap[i] = append(heightmap[i], square)
 		}
 	}
 
