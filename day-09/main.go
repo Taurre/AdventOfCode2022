@@ -25,8 +25,8 @@ func isAdjacent(head, tail *knot) bool {
 
 func simulate(last int, motions []string) int {
 	knots := make([]knot, last)
-	visited := make(map[string]bool)
-	visited[fmt.Sprintf("%d;%d", knots[last-1].x, knots[last-1].y)] = true
+	visited := make(map[knot]bool)
+	visited[knots[last-1]] = true
 
 	for _, motion := range motions {
 		var direction rune
@@ -82,7 +82,7 @@ func simulate(last int, motions []string) int {
 				}
 			}
 
-			visited[fmt.Sprintf("%d;%d", knots[last-1].x, knots[last-1].y)] = true
+			visited[knots[last-1]] = true
 		}
 	}
 
