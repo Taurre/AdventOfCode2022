@@ -67,7 +67,7 @@ func shortest(hm heightmap, from, to coord) int {
 					continue
 				}
 				if heightmap[adjacent.x][adjacent.y].distance > heightmap[node.x][node.y].distance+1 {
-					heightmap[adjacent.x][adjacent.y].distance = heightmap[node.x][node.y].distance+1
+					heightmap[adjacent.x][adjacent.y].distance = heightmap[node.x][node.y].distance + 1
 				}
 
 				next = append(next, adjacent)
@@ -105,7 +105,7 @@ func main() {
 
 		for _, letter := range text {
 			heightmap[i] = append(heightmap[i], square{letter: letter, elevation: int(letter - 'a'), distance: math.MaxInt32, visited: false})
-			last := len(heightmap[i])-1
+			last := len(heightmap[i]) - 1
 
 			switch letter {
 			case 'S':
