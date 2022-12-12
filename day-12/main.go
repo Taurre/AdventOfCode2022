@@ -33,16 +33,6 @@ func (heightmap heightmap) isValid(coord coord) bool {
 	return true
 }
 
-func find(nodes []coord, coord coord) bool {
-	for _, c := range nodes {
-		if coord.x == c.x && coord.y == c.y {
-			return true
-		}
-	}
-
-	return false
-}
-
 func shortest(hm heightmap, from, to coord) int {
 	heightmap := make(heightmap, len(hm))
 
@@ -52,9 +42,10 @@ func shortest(hm heightmap, from, to coord) int {
 	}
 
 	heightmap[from.x][from.y].distance = 0
+	heightmap[from.x][from.y].visited = true
 	nodes := append([]coord(nil), from)
 
-	for {
+	for !heightmap[to.x][to.y].visited {
 		if len(nodes) == 0 {
 			break
 		}
@@ -62,8 +53,6 @@ func shortest(hm heightmap, from, to coord) int {
 		next := make([]coord, 0)
 
 		for _, node := range nodes {
-			heightmap[node.x][node.y].visited = true
-
 			for _, adjacent := range []coord{coord{-1, 0}, coord{1, 0}, coord{0, -1}, coord{0, 1}} {
 				adjacent.x += node.x
 				adjacent.y += node.y
@@ -77,12 +66,12 @@ func shortest(hm heightmap, from, to coord) int {
 				if heightmap[node.x][node.y].elevation+1 < heightmap[adjacent.x][adjacent.y].elevation {
 					continue
 				}
-				if heightmap[adjacent.x][adjacent.y].distance > heightmap[node.x][node.y].distance {
+				if heightmap[adjacent.x][adjacent.y].distance > heightmap[node.x][node.y].distance+1 {
 					heightmap[adjacent.x][adjacent.y].distance = heightmap[node.x][node.y].distance+1
 				}
-				if (!find(next, adjacent)) {
-					next = append(next, adjacent)
-				}
+
+				next = append(next, adjacent)
+				heightmap[adjacent.x][adjacent.y].visited = true
 			}
 		}
 
