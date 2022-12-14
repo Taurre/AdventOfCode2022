@@ -75,16 +75,6 @@ func compare(a, b string) cmp {
 	a = unwrap(a)
 	b = unwrap(b)
 
-	if a == "" || b == "" {
-		if a == "" && b == "" {
-			return equal
-		} else if a == "" {
-			return less
-		} else {
-			return greater
-		}
-	}
-
 	s := [][]string{split(a), split(b)}
 	length := min(len(s[0]), len(s[1]))
 
