@@ -59,7 +59,7 @@ func split(list string) []string {
 		case ',':
 			if level == 0 {
 				s = append(s, list[start:i])
-				start = i+1
+				start = i + 1
 			}
 		}
 	}
@@ -186,7 +186,7 @@ func main() {
 	sum := 0
 
 	for i := 0; i < len(packets); i += 2 {
-		if (compare(packets[i], packets[i+1]) == less) {
+		if compare(packets[i], packets[i+1]) == less {
 			sum += indice
 		}
 
@@ -200,7 +200,7 @@ func main() {
 
 	for i := 0; i < len(packets); i++ {
 		if packets[i] == "[[2]]" || packets[i] == "[[6]]" {
-			key *= i+1
+			key *= i + 1
 		}
 	}
 
